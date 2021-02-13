@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+export default App;
 
 function App() {
   // const [fName, setFName] = useState("");
@@ -38,24 +39,37 @@ function App() {
     // console.log(prevValue);
 
     const { value, name } = event.target;
+    // setFullName((prevValue) => {
+    //   if (name === "fName") {
+    //     return { fName: value, lName: prevValue.lName, email: prevValue.email };
+    //   } else if (name === "lName") {
+    //     return { lName: value, fName: prevValue.fName, email: prevValue.email };
+    //   } else if (name === "email") {
+    //     return { email: value, lName: prevValue.lName, fName: prevValue.fName };
+    //   }
+    // });
+    //   setFullName((prevValue) => {
+    //     return {
+    //       ...prevValue,
+    //       [name]: value
+    //       // [] array brackets are most important to indicate that name is the key variable and not hardcoded "name" string . Setting object key by variable using square brackets
+    //     };
+    //   });
+    // }
+    // function handleLName(event) {
+    //   setLName(event.target.value);
+    // }
+    // function handleFName(event) {
+    //   setFName(event.target.value);
+    // }
+
+    setFullName((prevValue) => ({ ...prevValue, [name]: value })); //This works
+    // Wrpped {} of object in () so that JS is not confused with function {}  braces and clear that this is inline code.
+
     setFullName((prevValue) => {
-      if (name === "fName") {
-        return { fName: value, lName: prevValue.lName, email: prevValue.email };
-      } else if (name === "lName") {
-        return { lName: value, fName: prevValue.fName, email: prevValue.email };
-      } else if (name === "email") {
-        return { email: value, lName: prevValue.lName, fName: prevValue.fName };
-      }
-    });
+      return { ...prevValue, [name]: value };
+    }); //This has better readability.
   }
-
-  // function handleLName(event) {
-  //   setLName(event.target.value);
-  // }
-  // function handleFName(event) {
-  //   setFName(event.target.value);
-  // }
-
   return (
     <div className="container">
       <h1>
@@ -87,5 +101,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
