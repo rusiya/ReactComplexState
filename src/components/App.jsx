@@ -22,8 +22,18 @@ function App() {
     <div className="container">
       <h1>Hello {fullName}</h1>
       <form onSubmit={handleSubmit}>
-        <input name="fName" placeholder="First Name" onChange={handleFName} />
-        <input name="lName" placeholder="Last Name" onChange={handleLName} />
+        <input
+          name="fName"
+          placeholder="First Name"
+          onChange={handleFName}
+          value={fName}
+        />
+        <input
+          name="lName"
+          placeholder="Last Name"
+          onChange={handleLName}
+          value={lName}
+        />
         <button type="submit">Submit</button>
       </form>
     </div>
