@@ -5,11 +5,12 @@ function App() {
   // const [lName, setLName] = useState("");
   const [fullName, setFullName] = useState({
     fName: "",
-    lName: ""
+    lName: "",
+    email: ""
   });
 
   function handleSubmit(event) {
-    console.log("Submitted");
+    //console.log("Submitted");
     // setFullName(fName + " " + lName);
     //setFullName(fName + " " + lName);
     event.preventDefault();
@@ -39,9 +40,11 @@ function App() {
     const { value, name } = event.target;
     setFullName((prevValue) => {
       if (name === "fName") {
-        return { fName: value, lName: prevValue.lName };
-      } else {
-        return { lName: value, fName: prevValue.fName };
+        return { fName: value, lName: prevValue.lName, email: prevValue.email };
+      } else if (name === "lName") {
+        return { lName: value, fName: prevValue.fName, email: prevValue.email };
+      } else if (name === "email") {
+        return { email: value, lName: prevValue.lName, fName: prevValue.fName };
       }
     });
   }
@@ -58,6 +61,7 @@ function App() {
       <h1>
         Hello {fullName.fName} {fullName.lName}
       </h1>
+      <p>{fullName.email}</p>
       <form onSubmit={handleSubmit}>
         <input
           name="fName"
@@ -71,6 +75,13 @@ function App() {
           onChange={handleChange}
           value={fullName.lName}
         />
+        <input
+          name="email"
+          placeholder="Email Address"
+          onChange={handleChange}
+          value={fullName.email}
+        />
+
         <button type="submit">Submit</button>
       </form>
     </div>
